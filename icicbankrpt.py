@@ -9,7 +9,8 @@ import pandas as pd
 import streamlit as st 
 import xlrd
 st.set_page_config(page_title="Bank Statement Search", page_icon="bank", layout="wide")
-st.title("  :bank: :red[ICICI Bank Statement Search App]")
+#st.title("  :bank: :red[ICICI Bank Statement Search App]")
+st.title("  :bank: [ICICI Bank Statement Search App]")
 fl = st.file_uploader(" Upload a file using 'Browse files' ", type=(["xls"]))
 st.button("Rerun") 
 
