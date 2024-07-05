@@ -29,8 +29,7 @@ if fl is not None:
     Bankdata['Deposits']= pd.to_numeric(Bankdata['Deposits'],  errors='coerce')
     Bankdata = Bankdata.drop(['Unnamed: 0','Cheque Number'], axis=1)
     Bankdata['Transaction Remarks'].fillna('', inplace=True)
-    with st.expander("View All Data"):
-       st.dataframe(Bankdata[['Value Date','Withdrawals', 'Deposits','Transaction Remarks']])   
+ 
     top_5_withdrawals = Bankdata.sort_values(by='Withdrawals', ascending=False).head(6)  
     #top_5_withdrawals = top_5_withdrawals.reset_index(drop=True)
     #top_5_wthdropt  = top_5_withdrawals.drop(index=0, axis=0, inplace=False) #drop Totals row
@@ -42,9 +41,10 @@ if fl is not None:
     with st.expander("Top 5 Deposits"):  
        st.dataframe(top_5_deposits)
     stinput = st.text_input("Enter keyword to search -")
+   
     #
     if len(stinput) > 0:
-       print('stinput-1', stinput)
+       #print('stinput-1', stinput)
        #print(np.isnan(stinput))
        dfs1 = Bankdata.loc[Bankdata['Transaction Remarks'].str.contains(stinput, case=False)]
        def functrunc(description):
@@ -59,8 +59,9 @@ if fl is not None:
        with st.expander("View Transactions"):
           st.dataframe(dfs1[['Value Date','Transaction', 'Withdrawals', 'Deposits','Transaction Remarks']])    
     else:
-        print('stinput-2 ', stinput)
+        #print('stinput-2 ', stinput)
         dfs1d = 0
         dfs1w = 0
          
-   
+    with st.expander("View All Data"):
+         st.dataframe(Bankdata[['Value Date','Withdrawals', 'Deposits','Transaction Remarks']])  
