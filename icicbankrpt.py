@@ -37,10 +37,13 @@ if fl is not None:   #check only if file ploaded below code will be executed.
     top_5_deposits = Bankdata.sort_values(by='Deposits', ascending=False).head(5) #get 1st 5 data rows
     #top_5_deposits = top_5_deposits.reset_index(drop=True)
     #top_5_depdropt  = top_5_deposits.drop(index=0, axis=0, inplace=False)
-    with st.expander("Top 5 Withdrawls"): #for dropdown
-       st.dataframe(top_5_withdrawals)   # actual data
-    with st.expander("Top 5 Deposits"):  #for dropdown
-       st.dataframe(top_5_deposits) #for dropdown
+    col1, col2 = st.columns(2)
+    with col1:
+       with st.expander("Top 5 Withdrawls"): #for dropdown
+          st.dataframe(top_5_withdrawals)   # actual data
+    with col2: 
+        with st.expander("Top 5 Deposits"):  #for dropdown
+           st.dataframe(top_5_deposits) #for dropdown
     stinput = st.text_input("Enter keyword to search -") #inpt for search
     #
     if len(stinput) > 0:  #process only if in input is present
